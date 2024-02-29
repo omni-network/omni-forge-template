@@ -1,66 +1,56 @@
-## Foundry
+# Omni Forge Template
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository serves as a template for Ethereum smart contract development using Foundry, specifically designed for projects intending to utilize the Omni protocol for cross-chain interactions. The template features the `XGreeter` contract as an example to demonstrate how contracts can interact across different blockchain networks.
 
-Foundry consists of:
+## Getting Started
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+To use this template for your project, initialize a new project with Foundry by running the following within your project directory:
 
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```bash
+forge init --template https://github.com/omni-network/omni-forge-template.git
 ```
 
-### Test
+### Cloning the Template
 
-```shell
-$ forge test
+To clone this template along with its dependencies, use the following command:
+
+```bash
+git clone --recursive https://github.com/omni-network/omni-forge-template.git
 ```
 
-### Format
+If you've already cloned the repository without submodules, initialize and update them with:
 
-```shell
-$ forge fmt
+```bash
+git submodule update --init --recursive
 ```
 
-### Gas Snapshots
+## Compiling Contracts
 
-```shell
-$ forge snapshot
+After initializing your project with this template, compile the smart contracts using:
+
+```bash
+forge build
 ```
 
-### Anvil
+## Running Tests
 
-```shell
-$ anvil
+This template includes tests for the `XGreeter` contract. Run these tests to ensure everything is set up correctly:
+
+```bash
+forge test
 ```
 
-### Deploy
+## Contributing
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+Contributions to this template are welcome. To contribute:
 
-### Cast
+1. Fork the repository.
+2. Create a new branch for your feature (`git checkout -b feature/amazing-feature`).
+3. Commit your changes (`git commit -am 'feat(dir): Add some amazing feature'`).
+4. Push to the branch (`git push origin feature/amazing-feature`).
+5. Open a pull request.
 
-```shell
-$ cast <subcommand>
-```
+## Acknowledgments
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+- This template is designed for developers looking to explore cross-chain capabilities with the Omni protocol.
+- Special thanks to the Foundry team for providing such a powerful tool for smart contract development.
