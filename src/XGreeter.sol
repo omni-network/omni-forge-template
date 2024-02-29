@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.23;
 
-import {XApp} from "omni-network/omni/contracts/src/pkg/XApp.sol";
+import {XApp} from "omni/contracts/src/pkg/XApp.sol";
 
 /*
  * @title XGreeter
@@ -14,9 +14,18 @@ contract XGreeter is XApp {
     constructor(address portal) XApp(portal) {}
 
     /// @dev Greet on another chain
-    ///      `xcall` is a method inherited from `XApp`
-    function xgreet(uint64 destChainId, address to, string calldata greeting) external {
-        xcall(destChainId, to, abi.encodeWithSignature("greet(string)", greeting));
+    ///      `feeFor` and `xcall` are inherited from `XApp`
+    function xgreet(uint64 destChainId, address to, string calldata greeting) external payable {
+        bytes memory data = abi.encodeWithSignature("greet(string)", greeting);
+
+        // calculate xcall fee
+        uint256 fee = feeFor(destChainId, data);
+
+        // charge the caller
+        require(msg.value >= fee, "XGreeter: insufficient fee");
+
+        // make the xcall
+        xcall(destChainId, to, data);
     }
 
     /// @dev Greet on this chain
