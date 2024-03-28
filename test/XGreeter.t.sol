@@ -52,6 +52,7 @@ contract XGreeterTest is Test {
         emit Greetings(sender, sourceChainId, greeting);
 
         // use portal.mockXCall to simulate an xcall to xgreeter.greet(...)
+        vm.prank(sender);
         portal.mockXCall(sourceChainId, sender, address(xgreeter), abi.encodeWithSignature("greet(string)", greeting));
     }
 
