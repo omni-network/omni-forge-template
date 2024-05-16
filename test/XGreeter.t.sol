@@ -38,6 +38,7 @@ contract XGreeterTest is Test {
 
     // @dev Test that xgreet reverts if the fee is insufficient
     function test_xgreet_insufficientFee_reverts() public {
+        vm.deal(address(xgreeter), 1 ether); // reverts with no reason if contract has no balance
         vm.expectRevert("XGreeter: insufficient fee");
         xgreeter.xgreet(1, address(0xdead), "doesn't matter");
     }
