@@ -5,7 +5,7 @@ import {Script, console} from "forge-std/Script.sol";
 import {XGreeter} from "../src/XGreeter.sol";
 
 contract DeployXGreeter is Script {
-    address public portalAddress = address(0x123); // Update to the actual portal address
+    address public portalAddress = address(0xb835Dc695C6bFC8373c0d56973B5d9E9B083E97b); // CLI devnet portal address, use desired network
 
     function run() external {
         vm.startBroadcast();

@@ -19,13 +19,10 @@ contract XGreeter is XApp {
         bytes memory data = abi.encodeWithSignature("greet(string)", greeting);
 
         // calculate xcall fee
-        uint256 fee = feeFor(destChainId, data);
+        uint256 fee = xcall(destChainId, to, data);
 
         // charge the caller
         require(msg.value >= fee, "XGreeter: insufficient fee");
-
-        // make the xcall
-        xcall(destChainId, to, data);
     }
 
     /// @dev Greet on this chain
